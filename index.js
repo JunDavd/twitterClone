@@ -23,21 +23,27 @@ function drawTweets() {
     message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     likes: 400,
   }];
-  const container = document.querySelector(".tweets-container")
-
-  // 1- recorrer el array de tweets
-  tweets.forEach((tweet) => {
-    // 2- por cada uno de los tweets, crear una estructura HTML con sus datos.
-    const tweetHtml = document.createElement("div");
-    tweetHtml.innerHTML = `
-      <p>${tweet.handler} - ${tweet.date}</p>
-      <p>${tweet.message}</p>
-      <p>${tweet.likes}</p>
+  // const twittContainer = document.getElementsByClassName('tweets-container')
+  // tweets.forEach(tweet => {
+  //   twittContainer.
+  // })
+  
+  //1- recorrer el array de datos
+  const container = document.querySelector('.tweets-container')
+  tweets.forEach(tweet => {
+    //2- por cada uno de los tweets, crear una estructura html con sus datos
+    const htmlTweet = document.createElement('div')
+     htmlTweet.innerHTML = `
+    <p>${tweet.handler}</p>
+    <p>${tweet.date}</p>
+    <p>${tweet.message}</p>
+    <p>${tweet.likes}</p>
     `
-
-    // 3- la estructura de tweet que he preparado, la mando al DOM.
-    container.appendChild(tweetHtml)
-  })
+    //3- la estructura de tweet que he preparad, lo mando al dom 
+    container.appendChild(htmlTweet) 
+  });
 }
 
-drawTweets();
+drawTweets()
+
+

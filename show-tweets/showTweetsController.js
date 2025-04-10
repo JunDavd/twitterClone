@@ -3,14 +3,10 @@ import { buildTweet } from "./showTweetsView.js";
 
 export function showTweetsController() {
   
-  const container = document.querySelector('.tweets-container')
-  container.innerHTML = ''
   getTweets()
-  .then((response) => {
-    return response.json()
-  })
-  .then((data) => {
-    const tweets = data
+  .then((tweets) => {
+    const container = document.querySelector('.tweets-container')
+    container.innerHTML = ''
      //1- recorrer el array de datos
     tweets.forEach(tweet => {
       //2- por cada uno de los tweets, crear una estructura html con sus datos
@@ -18,6 +14,7 @@ export function showTweetsController() {
         htmlTweet.innerHTML = buildTweet(tweet)
       //3- la estructura de tweet que he preparad, lo mando al dom 
       container.appendChild(htmlTweet) 
+      console.log(tweet)
     });
   })
   }

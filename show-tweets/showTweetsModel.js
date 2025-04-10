@@ -1,8 +1,7 @@
 // Modelo --> obtencion de datos que necesita nuestra aplicacion
-export function getTweets(){
-  return fetch('http://localhost:8000/api/tweets')
-  .then((response) => {
-    return response.json()
-  })
+export async function getTweets(){
+  const response = await fetch('http://localhost:8000/api/tweets')
+  const tweets = await response.json()
+  return tweets
 }
 

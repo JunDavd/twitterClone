@@ -9,3 +9,11 @@ export const buildTweet = (tweet) => {
 
     return tweetView  
 }
+
+export const buildNoTweetsAdvice = () => {
+    return '<h3>Lo siento, no hay tweets disponibles</h3>'
+}
+
+// export const buildLoader = () => {
+//     return ''
+// }

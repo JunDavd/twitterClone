@@ -1,17 +1,19 @@
 import { getTweets } from "./showTweetsModel.js";
 import { buildTweet, buildNoTweetsAdvice } from "./showTweetsView.js";
 
-export async function showTweetsController() {
-  const container = document.querySelector('.tweets-container')
-  const loader = document.querySelector('.loader')
+export async function showTweetsController(container) {
   try {
-    loader.classList.remove('hidden')
+    //empiezo a cargar tweets
+    const event = new CustomEvent('load-tweets-started')
+    container.dispatchEvent(event)
     const tweets = await getTweets()
-    loader.classList.add('hidden')
     drawTweets(tweets, container)
   } catch (error) {
-    loader.classList.add('hidden')
     alert(error.message)
+  } finally{
+    //ya he cargado los tweets
+    const event = new CustomEvent('load-tweets-finished')
+    container.dispatchEvent(event)
   }
 }
 

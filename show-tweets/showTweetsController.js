@@ -10,6 +10,10 @@ export async function showTweetsController(container) {
     drawTweets(tweets, container)
   } catch (error) {
     alert(error.message)
+    const event = new CustomEvent('load-tweets-error', {
+      detail: error.message
+    })
+    container.dispatchEvent(event)
   } finally{
     //ya he cargado los tweets
     const event = new CustomEvent('load-tweets-finished')

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loader = document.querySelector('.loader')
     const notifications = document.querySelector('.notifications')
     const {show, hide} = loaderController(loader)
+    const {showNotification} = notificationsController(notifications)
     //lo que nos interesan son los metodos de dentro del controlador
     container.addEventListener('load-tweets-started', () => {
         show()
@@ -16,9 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
     container.addEventListener('load-tweets-finished', () => {
         hide()
     })
-    showTweetsController(container)
+    container.addEventListener('load-tweets-error', (event) => {
+        const errorMessage = event.detail
+        showNotification(errorMessage)
+    })
 
-    notificationsController(notifications)
+    showTweetsController(container)
 })
 
+//IMPLEMENTAR UNA NOTIFICACION CUANDO HAY UN ERROR,
+ 
 

@@ -9,7 +9,6 @@ export async function showTweetsController(container) {
     const tweets = await getTweets()
     drawTweets(tweets, container)
   } catch (error) {
-    alert(error.message)
     const event = new CustomEvent('load-tweets-error', {
       detail: error.message
     })

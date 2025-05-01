@@ -1,7 +1,13 @@
+import { REGEXP } from "../utils/constants.js"
+import { createUser } from "./registerModel.js"
+
 export const registerController = (form) => {
     form.addEventListener('submit', (event) => {
         event.preventDefault()
         //validar formato de email
+        const nameElement = form.querySelector('#name')
+        const name = nameElement.value
+    
         const emailElement = form.querySelector('#email')
         const email = emailElement.value
     
@@ -11,7 +17,7 @@ export const registerController = (form) => {
         const passwordConfirmElement = form.querySelector('#password-confirm')
         const passwordConfirm = passwordConfirmElement.value
     
-        const emailRegExp = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+        const emailRegExp = new RegExp(REGEXP.mail)
         const errors = []
         if(!emailRegExp.test(email)){
             //mostrar error
@@ -25,6 +31,8 @@ export const registerController = (form) => {
 
         if(errors.length === 0){
             //crear usuarip
+            handleCreateUser(name,email,password,form)
+            
         } else{
             errors.forEach(error => {
                 const eventError = new CustomEvent('error-validation',{
@@ -33,7 +41,26 @@ export const registerController = (form) => {
                 form.dispatchEvent(eventError)
             });
         }
-
-        console.log(errors)
     })
+
+    const handleCreateUser = async (name,email,password,form) => {
+        try {
+            await createUser(name,email,password)
+            const event = new CustomEvent('register-ok',{
+                detail: {
+                    message: 'Te has registrado correctamente',
+                    type:'success'
+                } 
+            })
+        form.dispatchEvent(event)
+            setTimeout(() => {
+                window.location = '/'
+            }, 5000);
+        } catch (error) {
+            const event = new CustomEvent('error-validation',{
+                detail: error
+            })
+        form.dispatchEvent(event)
+        }
+    }
 } 

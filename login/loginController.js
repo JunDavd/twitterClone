@@ -21,9 +21,7 @@ export const loginController = (form) => {
     async function handleLoginUser(email,password) {
         try {
             const token = await searchUser(email,password)
-            if(token){
-                window.location.href = './index.html'
-            }
+            localStorage.setItem("token",token)
             
         } catch (error) {
             alert(`Contraseña o usuario incorrecto\nDetalles: ${error}`)     

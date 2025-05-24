@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     container.addEventListener('load-tweets-finished', () => {
         hide()
-        showNotification('He terminado de cargar los tweets')
+        showNotification('He terminado de cargar los tweets','success')
     })
     container.addEventListener('load-tweets-error', (event) => {
         const errorMessage = event.detail

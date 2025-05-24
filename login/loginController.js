@@ -6,14 +6,14 @@ export const loginController = (form) => {
 
         const emailElement = form.querySelector('#email')
         const email = emailElement.value
-    
         const passwordElement = form.querySelector('#password')
         const password = passwordElement.value
 
         const emailRegExp = new RegExp(REGEXP.mail)
         if(!emailRegExp.test(email)){
             //mostrar error
-            alert('El formato del email es incorrecto')
+            const event = new CustomEvent('email-format-error')
+            form.dispatchEvent(event)
         } else{
             handleLoginUser(email, password)
         }
@@ -21,10 +21,10 @@ export const loginController = (form) => {
     async function handleLoginUser(email,password) {
         try {
             const token = await searchUser(email,password)
-            localStorage.setItem("token",token)
-            
+            localStorage.setItem('token', token) 
+            window.location = '/'       
         } catch (error) {
-            alert(`Contraseña o usuario incorrecto\nDetalles: ${error}`)     
+            alert('Usuario o contraseña no coinciden')
         }
     }
 }

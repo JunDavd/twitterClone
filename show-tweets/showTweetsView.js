@@ -1,12 +1,12 @@
 export const buildTweet = (tweet) => {
+    const date = new Date(tweet.updatedAt)
     let tweetView = `
-    <p>${tweet.handler} - ${tweet.date}</p>
-    <p>${tweet.message}</p>
+    <p>${tweet.userId} - ${date.toLocaleString()}</p>
+    <p>${tweet.content}</p>
     `
     if (tweet.likes > 0){
         tweetView += `<p>${tweet.likes}</p>`
     }
-
     return tweetView  
 }
 

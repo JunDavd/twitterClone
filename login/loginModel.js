@@ -14,7 +14,7 @@ export const searchUser = async(email,password) =>{
         throw new Error('Error iniciando sesión')
     }
 
-    const {accesToken} = await response.json()
+    const {accessToken} = await response.json()
 
-    return accesToken
+    return accessToken
 }

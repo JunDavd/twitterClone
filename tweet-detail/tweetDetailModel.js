@@ -1,12 +1,12 @@
 
 export const tweetDetailModel = async (tweetId) => {
-    await fetch(`http://localhost:8000/api/tweets/${tweetId}`)
+   const response = await fetch(`http://localhost:8000/api/tweets/${tweetId}?_expand=user`)
 
-    if(!Response.ok){
-        throw new Error("Tweer no disponible")
+    if(!response.ok){
+        throw new Error("Tweet no disponible")
     }
 
-    const tweetDetail = await Response.json()
+    const tweetDetail = await response.json()
 
     return tweetDetail
 }

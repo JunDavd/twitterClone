@@ -9,3 +9,4 @@ export const buildTweetDetailView = (tweet) => {
     }
     return tweetView  
 }
+

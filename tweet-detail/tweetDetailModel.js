@@ -10,3 +10,34 @@ export const tweetDetailModel = async (tweetId) => {
 
     return tweetDetail
 }
+export const tokenDetailInfo = async (token) => {
+   const response = await fetch(`http://localhost:8000/auth/me`,{
+    headers:{
+        "Content-type": "application/json",
+        "Authorization": `Bearer ${token}`
+    }
+   })
+
+    if(!response.ok){
+        throw new Error("El token no coincide")
+    }
+
+    const tokenDetail = await response.json()
+
+    return tokenDetail
+}
+
+export const deleteTweetModel = async (tweetId,token) =>{
+    const response = await fetch(`http://localhost:8000/api/tweets/${tweetId}`, {
+    method: "DELETE",
+    headers: {
+        'Content-type': "application/json",
+        'Authorization': `Bearer ${token}`
+    }
+   })
+
+   if(!response.ok){
+    const data = await response.json()
+    throw new Error('No se ha podido borrar el tweet')
+   }
+}

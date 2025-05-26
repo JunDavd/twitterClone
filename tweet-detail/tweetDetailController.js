@@ -23,18 +23,20 @@ export const tweetDetailController =  async(tweetContainer, tweetId) => {
 }
 const deleteTweet = async (tweetContainer,tweetId,token) =>{
     const btnDeleteTweet = document.createElement('button')
-    btnDeleteTweet.innerHTML = 'Delete tweet'
+    btnDeleteTweet.textContent = 'Delete tweet'
     tweetContainer.appendChild(btnDeleteTweet)      
     btnDeleteTweet.addEventListener('click', async () =>{
-        try {
-            await deleteTweetModel(tweetId,token)
-            window.location = '/'     
-        } catch (error) {
-            alert(error.message)
+        if(confirm("¿Estás seguro de borrar el tweet?")){
+            try {
+                await deleteTweetModel(tweetId,token)
+                window.location = '/'     
+            } catch (error) {
+                alert(error.message)
+            }
         }
-    })
-    
+    })  
 }
+
 
 
 //http://localhost:8000/auth/me

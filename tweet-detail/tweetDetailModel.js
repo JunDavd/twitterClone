@@ -35,9 +35,7 @@ export const deleteTweetModel = async (tweetId,token) =>{
         'Authorization': `Bearer ${token}`
     }
    })
-
    if(!response.ok){
-    const data = await response.json()
     throw new Error('No se ha podido borrar el tweet')
    }
 }

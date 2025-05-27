@@ -19,7 +19,7 @@ export const tokenDetailInfo = async (token) => {
    })
 
     if(!response.ok){
-        throw new Error("El token no coincide")
+        throw new Error("Usuario no existente")
     }
 
     const tokenDetail = await response.json()

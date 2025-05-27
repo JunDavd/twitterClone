@@ -10,3 +10,9 @@ export const buildTweetDetailView = (tweet) => {
     return tweetView  
 }
 
+export const buildButtonDeleteTweet = () => {
+    const btnDeleteTweet = document.createElement('button')
+        btnDeleteTweet.textContent = 'Delete tweet'
+    return btnDeleteTweet
+}
+
